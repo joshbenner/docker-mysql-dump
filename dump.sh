@@ -39,5 +39,11 @@ fi
 
 for db in $databases; do
     echo "Dumping: $db..."
-    mysqldump --force --opt ${MYSQL_CONN} --databases $db | gzip > "$MYSQL_BACKUP_DIR/$db.gz"
+    if [ -n $DUMP_TIMESTAMP ]; then
+    	timestamp=`date +%Y-%m-%d.%H%M%S`
+    	filename="${db}_${timestamp}"
+    else
+    	filename=$db
+    fi
+    mysqldump --force --opt ${MYSQL_CONN} --databases $db | gzip > "$MYSQL_BACKUP_DIR/$filename.gz"
 done
