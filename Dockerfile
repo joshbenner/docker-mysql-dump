@@ -3,7 +3,7 @@ MAINTAINER Josh Benner <josh@bennerweb.com>
 
 RUN apk update && \
 	apk add mysql-client && \
-	rm -rf /var/cache/apk/*
+	rm -rf /var/lib/apt/lists/*
 
 COPY dump.sh /dump.sh
 
