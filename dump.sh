@@ -45,5 +45,5 @@ for db in $databases; do
     else
     	filename=$db
     fi
-    mysqldump --force --opt ${MYSQL_CONN} --databases $db | gzip > "$MYSQL_BACKUP_DIR/$filename.gz"
+    mysqldump --force --events --opt ${MYSQL_CONN} --databases $db | gzip > "$MYSQL_BACKUP_DIR/$filename.gz"
 done
